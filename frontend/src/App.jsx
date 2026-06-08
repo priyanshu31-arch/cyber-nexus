@@ -17,6 +17,10 @@ const ScrollToTop = () => {
   return null;
 };
 
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : '';
+
 // Navbar component
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -379,7 +383,7 @@ const Services = () => {
   const filterType = queryParams.get('type');
   
   useEffect(() => {
-    fetch('http://localhost:5000/api/services')
+    fetch(`${API_BASE}/api/services`)
       .then(res => res.json())
       .then(data => setServices(data))
       .catch(() => {
@@ -747,7 +751,7 @@ const Blog = () => {
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/blog')
+    fetch(`${API_BASE}/api/blog`)
       .then(res => res.json())
       .then(data => setBlogs(data))
       .catch(() => {
@@ -1137,7 +1141,7 @@ const Certifications = () => {
   const [regForm, setRegForm] = useState({ fullName: '', email: '' });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/certifications')
+    fetch(`${API_BASE}/api/certifications`)
       .then(res => res.json())
       .then(data => setCerts(data))
       .catch(() => {
@@ -1363,7 +1367,7 @@ const Weapons = () => {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/weapons')
+    fetch(`${API_BASE}/api/weapons`)
       .then(res => res.json())
       .then(data => setWeapons(data))
       .catch(() => {
